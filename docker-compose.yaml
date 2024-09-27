@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    image: todo:2.0                     # Using the pre-built image
+    container_name: real_time_todo_app
+    ports:
+      - "8080:8080"                         # Exposing port 8080
+    depends_on:
+      - db                                  # The app depends on the db service
+    environment:
+      POSTGRES_HOST: db                     # Referring to the db service by name
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: sanidhya
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: todo
+    volumes:
+      # Commented out the volume mapping, as it might not be needed with pre-built images
+      - .:/app                             # Only include this if you want live code updates from the host
+
+  db:
+    image: postgres:13                      # Using the postgres image version 13
+    container_name: real_time_todo_db
+    environment:
+      POSTGRES_USER: sanidhya
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: todo
+    ports:
+      - "5432:5432"                         # Exposing port 5432 for PostgreSQL
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

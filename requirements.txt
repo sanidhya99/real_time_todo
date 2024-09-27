@@ -1,0 +1,12 @@
+# Install Gin framework for HTTP server
+go get -u github.com/gin-gonic/gin
+
+# Install GORM for ORM (PostgreSQL ORM)
+go get -u gorm.io/gorm
+go get -u gorm.io/driver/postgres
+
+# Install Gorilla WebSocket
+go get -u github.com/gorilla/websocket
+
+# Install JWT for Authentication
+go get -u github.com/dgrijalva/jwt-go
